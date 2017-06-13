@@ -1,8 +1,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :tweets
+
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
+
   namespace :admin do
     resources :users
     resources :announcements
@@ -16,6 +19,5 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  root to: 'home#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'tweets#index'
 end

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    <%= link_to 'New Tweet', new_tweet_path, class: "float-right" %>
+    <h1>Tweets</h1>
+
+    <% @tweets.order(created_at: :desc).each do |tweet| %>
+      <div class="card card-block mb-3">
+        <div>
+          <div class="text-muted float-right">
+            <small><%= time_ago_in_words tweet.created_at %> ago</small>
+          </div>
+          <strong><%= tweet.user.name %></strong>
+        </div>
+        <div><%= tweet.body %></div>
+        <div><small><%= link_to 'Edit', edit_tweet_path(tweet) if editable?(tweet) %></small></div>
+      </div>
+    <% end %>
+  </div>
+</div>
